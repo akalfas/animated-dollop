@@ -14,7 +14,7 @@ jobs:
       run: |
            echo "::set-output name=package_name::$(sed -En 's/name[[:space:]]*=[[:space:]]*"([^"]+)"/\1/p' Cargo.toml | head -1)"      
            echo "::set-output name=package_version::$(sed -En 's/version[[:space:]]*=[[:space:]]*"([^"]+)"/\1/p' Cargo.toml | head -1)"
-           echo "::set-output name=dockerhub_org::ruststarter"
+           echo "::set-output name=dockerhub_org::andreikalfas"
     - run: |
            echo "${{steps.vars.outputs.package_name}}"
            echo "${{steps.vars.outputs.package_version}}"
@@ -22,7 +22,7 @@ jobs:
     - run: mv docker/.dockerignore .dockerignore
     - name: Build the Docker image
       run: docker build --tag ${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}} --file docker/Dockerfile .
-    - run: docker tag ${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}} ruststarter/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
+    - run: docker tag ${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}} andreikalfas/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
     - name: Docker authentication
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
