@@ -8,19 +8,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, ubuntu-latest]
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
 
       - name: Install stable toolchain
-        uses: omarabid-forks/rs-toolchain@v1
+        uses: actions-rs/toolchain@v1.0.6
         with:
           profile: minimal
           toolchain: stable
           override: true
 
       - name: Run cargo test
-        uses: omarabid-forks/rs-cargo@v1
+        uses: actions-rs/cargo@v1.0.1
         with:
           command: test
