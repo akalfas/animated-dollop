@@ -23,10 +23,10 @@ jobs:
     - name: Build the Docker image
       run: docker build --tag ${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}} --file docker/Dockerfile .
     - run: docker tag ${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}} andreikalfas/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
-    - name: Docker authentication
+    - name: Docker push
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
-      run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_TOKEN"
-    - name: Push Image
-      run: docker push andreikalfas/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
+      run: |
+            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_TOKEN"
+            docker push andreikalfas/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
