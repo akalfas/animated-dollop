@@ -29,4 +29,4 @@ jobs:
         DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
       run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_TOKEN"
     - name: Push Image
-      run: docker push ruststarter/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
+      run: docker push andreikalfas/${{steps.vars.outputs.package_name}}:${{steps.vars.outputs.package_version}}
