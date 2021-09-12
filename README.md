@@ -1,4 +1,5 @@
 <p align="center">
+
 <a href="https://rust-starter.github.io"><img src="https://raw.githubusercontent.com/rust-starter/rust-starter.github.io/master/docs/images/logo_color.png" height="100px"/></a>
  </p>
 <h1 align="center">rust-cli-starter</h1>
